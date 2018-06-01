@@ -26,7 +26,7 @@ public class TestProxyDemo {
 
         DynamicProxyHandler dynamicProxyHandler = new DynamicProxyHandler(proxyClassImp);
 
-        IProxyClass proxyClass = (IProxyClass) dynamicProxyHandler.newProxyInstance(IProxyClass.class.getInterfaces());
+        IProxyClass proxyClass = (IProxyClass) dynamicProxyHandler.newProxyInstance(proxyClassImp.getClass().getInterfaces());
 
         proxyClass.doSomething(100);
 
