@@ -1,1 +1,1 @@
-include ':app', ':testmodel', ':TestProcessors'
+include ':app', ':testProxy', ':TestProcessors', ':TestAnnotation', ':testtv'

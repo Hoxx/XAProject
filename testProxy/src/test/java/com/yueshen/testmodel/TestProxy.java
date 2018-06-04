@@ -9,7 +9,7 @@ import com.yueshen.testmodel.testproxy.SingProxy;
 import org.junit.Test;
 
 //测试类
-public class TestProxyDemo {
+public class TestProxy {
 
     public static int sing(IDoSomething something, int sum) {
         return something.doSomething(sum);
@@ -17,7 +17,7 @@ public class TestProxyDemo {
 
     @Test
     public void main() {
-        System.out.println(TestProxyDemo.sing(new SingProxy(), 5));
+        System.out.println(TestProxy.sing(new SingProxy(), 5));
     }
 
     @Test

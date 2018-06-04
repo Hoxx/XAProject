@@ -6,18 +6,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class TestMain {
+public class TestReflection {
 
     @Test
     public void main() {
-        TestClass testClass = new TestClass();
-        System.out.println(testClass.getName());
+
     }
 
     public void Test1() {
-        TestClass testClass = new TestClass();
+        TestBeanClass testBeanClass = new TestBeanClass();
 
-        Class cls = testClass.getClass();
+        Class cls = testBeanClass.getClass();
 
         //获取类的属性
         System.out.println("获取类的属性");

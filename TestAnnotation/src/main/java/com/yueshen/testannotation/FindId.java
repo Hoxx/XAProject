@@ -1,15 +1,12 @@
-package com.yueshen.testmodel;
+package com.yueshen.testannotation;
 
-
-import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Retention(RetentionPolicy.CLASS)
 @Target(ElementType.FIELD)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface Name {
-    String value() default "";
+public @interface FindId {
+    int value();
 }

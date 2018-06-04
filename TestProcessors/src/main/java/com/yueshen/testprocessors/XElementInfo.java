@@ -1,4 +1,4 @@
 package com.yueshen.testprocessors;
 
-public class MyProcessors {
+public class XElementInfo {
 }
