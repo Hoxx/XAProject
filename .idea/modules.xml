@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/TestProcessors/TestProcessors.iml" filepath="$PROJECT_DIR$/TestProcessors/TestProcessors.iml" />
       <module fileurl="file://$PROJECT_DIR$/XAProject.iml" filepath="$PROJECT_DIR$/XAProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testProxy/testProxy.iml" filepath="$PROJECT_DIR$/testProxy/testProxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testproxy/testproxy.iml" filepath="$PROJECT_DIR$/testproxy/testproxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/testtv/testtv.iml" filepath="$PROJECT_DIR$/testtv/testtv.iml" />
     </modules>
   </component>
