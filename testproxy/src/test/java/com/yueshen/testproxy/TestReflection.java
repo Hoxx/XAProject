@@ -10,7 +10,7 @@ public class TestReflection {
 
     @Test
     public void main() {
-
+        Test1();
     }
 
     public void Test1() {

@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TestAnnotation/TestAnnotation.iml" filepath="$PROJECT_DIR$/TestAnnotation/TestAnnotation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TestProcessors/TestProcessors.iml" filepath="$PROJECT_DIR$/TestProcessors/TestProcessors.iml" />
       <module fileurl="file://$PROJECT_DIR$/XAProject.iml" filepath="$PROJECT_DIR$/XAProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XAnnotationProcess/XAnnotationProcess.iml" filepath="$PROJECT_DIR$/XAnnotationProcess/XAnnotationProcess.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testproxy/testproxy.iml" filepath="$PROJECT_DIR$/testproxy/testproxy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testtv/testtv.iml" filepath="$PROJECT_DIR$/testtv/testtv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testproxy/testProxy.iml" filepath="$PROJECT_DIR$/testproxy/testProxy.iml" />
     </modules>
   </component>
 </project>

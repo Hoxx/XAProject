@@ -8,11 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/TestAnnotation" />
-            <option value="$PROJECT_DIR$/TestProcessors" />
+            <option value="$PROJECT_DIR$/XAnnotationProcess" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/testproxy" />
-            <option value="$PROJECT_DIR$/testtv" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
