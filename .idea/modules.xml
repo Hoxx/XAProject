@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/XAProject.iml" filepath="$PROJECT_DIR$/XAProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XAnnotation/XAnnotation.iml" filepath="$PROJECT_DIR$/XAnnotation/XAnnotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/XAnnotationProcess/XAnnotationProcess.iml" filepath="$PROJECT_DIR$/XAnnotationProcess/XAnnotationProcess.iml" />
+      <module fileurl="file://$PROJECT_DIR$/XProcessor/XProcessor.iml" filepath="$PROJECT_DIR$/XProcessor/XProcessor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/testproxy/testProxy.iml" filepath="$PROJECT_DIR$/testproxy/testProxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xannotationprocessor/xannotationprocessor.iml" filepath="$PROJECT_DIR$/xannotationprocessor/xannotationprocessor.iml" />
     </modules>
   </component>
 </project>

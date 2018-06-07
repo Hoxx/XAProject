@@ -1,1 +1,1 @@
-include ':app', ':testProxy', ':XAnnotationProcess'
+include ':app', ':testProxy', ':XAnnotationProcess', ':XAnnotation', ':XProcessor', ':xannotationprocessor'
