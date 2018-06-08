@@ -1,7 +1,6 @@
 package com.yueshen.xprocessor;
 
 import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterizedTypeName;
@@ -17,26 +16,30 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeKind;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 /*对应的是一个类，如果在一个类中多个地方用到了这个注解，那么会把左右的注解信息，加入到这个annotationMapInfo里面*/
 public class XAnnotationClassItem {
 
+    private Types types;
     private PackageElement packageElement;
     private TypeElement typeElement;
     private Messager messager;
 
+    //判断当前类是否是Fragment
+    private boolean isFragment;
+
     private Map<Integer, VariableElement> annotationMapInfo = new HashMap<>();
 
-    public XAnnotationClassItem(PackageElement packageElement, TypeElement typeElement) {
+    public XAnnotationClassItem(Types types, PackageElement packageElement, TypeElement typeElement,Messager messager) {
+        this.messager=messager;
+        this.types = types;
         this.packageElement = packageElement;
         this.typeElement = typeElement;
-    }
-
-    public XAnnotationClassItem(PackageElement packageElement, TypeElement typeElement, Messager messager) {
-        this.packageElement = packageElement;
-        this.typeElement = typeElement;
-        this.messager = messager;
+        isFragment = isFragment(typeElement);
     }
 
     //收集一个类中的所有该注解的变量信息
@@ -46,33 +49,59 @@ public class XAnnotationClassItem {
         }
     }
 
+    //判断当前类是否是Fragment
+    private boolean isFragment(TypeElement element) {
+        TypeElement currentClass = element;
+        //获取当前父类
+        while (true) {
+            TypeMirror superClass = currentClass.getSuperclass();
+            if (superClass.getKind() == TypeKind.NONE) {
+                //父类是基础类型Object
+                return false;
+            }
+            if (superClass.toString().equals("android.support.v4.app.Fragment")) {
+                //判断此类是Fragment
+                return true;
+            }
+            if (superClass.toString().equals("android.app.Activity")) {
+                //判断此类是Activity
+                return false;
+            }
+            //重新把父类设置为当前类
+            currentClass = (TypeElement) types.asElement(superClass);
+        }
+    }
+
     //生成代码
     public JavaFile generateJavaCode() {
         MethodSpec.Builder methodSpec = MethodSpec.methodBuilder("findId")
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override.class)
-                .returns(Void.class)
+                .returns(Void.TYPE)
                 .addParameter(TypeName.get(typeElement.asType()), "host", Modifier.FINAL)
                 .addParameter(TypeName.OBJECT, "source");
-
+        printNodeMessage("Create Method!");
+        /* $T:代表的是一个类型，不能用String替换,$N:代表的是字符串资源 $L:代表的是long型 */
         for (Map.Entry<Integer, VariableElement> entry : annotationMapInfo.entrySet()) {
-            printNodeMessage("entry.getValue().getSimpleName().toString():"+entry.getValue().getSimpleName().toString());
-            printNodeMessage("entry.getValue().asType().toString():"+entry.getValue().asType().toString());
-            printNodeMessage("typeElement.getQualifiedName().toString():"+typeElement.getQualifiedName().toString());
-            printNodeMessage("entry.getKey():"+entry.getKey());
-            methodSpec.addStatement("host.$N = ($T)(($T)source).findViewById($L);",
-                    entry.getValue().getSimpleName().toString(),
-                    entry.getValue().asType().toString(),
-                    typeElement.getQualifiedName().toString(),
-                    entry.getKey());
+            if (isFragment) {
+                methodSpec.addStatement("host.$N = ($T)((android.view.View)source).findViewById($L)",
+                        entry.getValue().getSimpleName().toString(),
+                        ClassName.get(entry.getValue().asType()),
+                        entry.getKey());
+            } else {
+                methodSpec.addStatement("host.$N = ($T)host.findViewById($L)",
+                        entry.getValue().getSimpleName().toString(),
+                        ClassName.get(entry.getValue().asType()),
+                        entry.getKey());
+            }
         }
-
+        printNodeMessage("Create Class!");
         TypeSpec typeSpec = TypeSpec.classBuilder(typeElement.getSimpleName().toString() + "$$ViewInject")
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(ParameterizedTypeName.get(ClassName.get("com.yueshen.xannotationprocessor", "XAPInterface"), TypeName.get(typeElement.asType())))
                 .addMethod(methodSpec.build())
                 .build();
-
+        printNodeMessage("Create Package!");
         return JavaFile.builder(packageElement.getQualifiedName().toString(), typeSpec).build();
     }
 

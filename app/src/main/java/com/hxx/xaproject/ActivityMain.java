@@ -18,10 +18,11 @@ public class ActivityMain extends AppCompatActivity {
     FragmentManager fragmentManager;
 
 
-    TabBean<BFragment> bFragmentTabBean;
-
     @FindId(R.id.tv_main_title)
     TextView main_tv;
+
+
+    TabBean<BFragment> bFragmentTabBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

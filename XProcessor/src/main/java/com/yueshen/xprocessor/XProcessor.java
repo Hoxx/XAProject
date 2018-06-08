@@ -21,11 +21,13 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 @AutoService(Processor.class)
 public class XProcessor extends AbstractProcessor {
 
+    private Types types;
     private Filer filer;
     private Elements elements;
     private Messager messager;
@@ -48,6 +50,7 @@ public class XProcessor extends AbstractProcessor {
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
 
+        types = processingEnvironment.getTypeUtils();
         elements = processingEnvironment.getElementUtils();
         filer = processingEnvironment.getFiler();
         messager = processingEnvironment.getMessager();
@@ -57,7 +60,9 @@ public class XProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         printNodeMessage("XProcessor-process...");
+        annotationItemMap.clear();
         Set<? extends Element> annotations = roundEnvironment.getElementsAnnotatedWith(FindId.class);
+        printNodeMessage("annotations.size():" + annotations.size());
         for (Element element : annotations) {
             if (!isValidAnnotation(element)) {
                 printErrorMessage("Annotation type not is true!" + element.getSimpleName());
@@ -76,7 +81,7 @@ public class XProcessor extends AbstractProcessor {
 
             XAnnotationClassItem item = annotationItemMap.get(qualifiedName);
             if (item == null) {
-                item = new XAnnotationClassItem(packageElement, typeElement,messager);
+                item = new XAnnotationClassItem(types, packageElement, typeElement, messager);
                 annotationItemMap.put(qualifiedName, item);
             }
 
@@ -85,15 +90,16 @@ public class XProcessor extends AbstractProcessor {
                 int id = findId.value();
                 item.addAnnotation(id, variableElement);
             }
-            printNodeMessage("start create code");
-            try {
-                for (Map.Entry<String, XAnnotationClassItem> entry : annotationItemMap.entrySet()) {
-                    entry.getValue().generateJavaCode().writeTo(filer);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                printErrorMessage(e.toString());
+        }
+        printNodeMessage("start create code");
+        printNodeMessage("annotationItemMap.size():" + annotationItemMap.size());
+        try {
+            for (Map.Entry<String, XAnnotationClassItem> entry : annotationItemMap.entrySet()) {
+                entry.getValue().generateJavaCode().writeTo(filer);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            printErrorMessage(e.toString());
         }
         return true;
     }
