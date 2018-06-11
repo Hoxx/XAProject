@@ -6,6 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/XAnnotation/XAnnotation.iml" filepath="$PROJECT_DIR$/XAnnotation/XAnnotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/XProcessor/XProcessor.iml" filepath="$PROJECT_DIR$/XProcessor/XProcessor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/routerapp/routerapp.iml" filepath="$PROJECT_DIR$/routerapp/routerapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/routermodulea/routermodulea.iml" filepath="$PROJECT_DIR$/routermodulea/routermodulea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/routermoduleb/routermoduleb.iml" filepath="$PROJECT_DIR$/routermoduleb/routermoduleb.iml" />
       <module fileurl="file://$PROJECT_DIR$/testproxy/testProxy.iml" filepath="$PROJECT_DIR$/testproxy/testProxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/xannotationprocessor/xannotationprocessor.iml" filepath="$PROJECT_DIR$/xannotationprocessor/xannotationprocessor.iml" />
       <module fileurl="file://$PROJECT_DIR$/xrouter/xrouter.iml" filepath="$PROJECT_DIR$/xrouter/xrouter.iml" />

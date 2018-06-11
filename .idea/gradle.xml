@@ -11,6 +11,9 @@
             <option value="$PROJECT_DIR$/XAnnotation" />
             <option value="$PROJECT_DIR$/XProcessor" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/routerapp" />
+            <option value="$PROJECT_DIR$/routermodulea" />
+            <option value="$PROJECT_DIR$/routermoduleb" />
             <option value="$PROJECT_DIR$/testproxy" />
             <option value="$PROJECT_DIR$/xannotationprocessor" />
             <option value="$PROJECT_DIR$/xrouter" />
