@@ -24,8 +24,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    //固定每个组件的资源前缀
+    }//固定每个组件的资源前缀
     resourcePrefix 'moduleb_'
     //资源设置
     sourceSets{
@@ -40,6 +39,7 @@ android {
             }
         }
     }
+
 
 }
 

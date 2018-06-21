@@ -1,36 +1,21 @@
 package com.yueshen.xrouter;
 
-import android.content.Context;
+import android.app.Application;
+
+import com.yueshen.xrouter.activity.XRouterActivityAction;
 
 public class XRouter {
-
-    private volatile static XRouter instance;
-
-    private static Context c;
 
     private XRouter() {
     }
 
-    public static void initialize(Context context) {
-        c = context.getApplicationContext();
-        createInstance();
+    public static void register(Application app) {
+        if (app == null) return;
+        app.registerActivityLifecycleCallbacks(XRouterActivityAction.getInstance());
     }
 
-    //创建单例
-    private static void createInstance() {
-        if (instance == null) {
-            synchronized (XRouter.class) {
-                if (instance == null) {
-                    instance = new XRouter();
-                }
-            }
-        }
-    }
 
-    //检查异常
-    private void checkException() {
-        if (instance == null)
-            throw new NullPointerException("XRouter not used initialize method!");
-    }
+
+
 
 }
